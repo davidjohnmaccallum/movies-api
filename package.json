@@ -17,6 +17,10 @@
     "entertainment"
   ],
   "author": "David MacCallum <davidjohnmac@gmail.com>",
+  "repository": {
+    "type": "github",
+    "url": "https://github.com/davidjohnmaccallum/movies-api"
+  },
   "license": "UNLICENCED",
   "dependencies": {
     "body-parser": "^1.18.3",

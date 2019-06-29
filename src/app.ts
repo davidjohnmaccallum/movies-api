@@ -5,6 +5,7 @@ const pretty = require("express-prettify");
 import cors from "cors";
 import Env from "./env";
 import movieRouter from "./router/movieRouter";
+import errorHandler from "./errorHandler";
 
 const app = express();
 
@@ -18,5 +19,7 @@ if (Env.NODE_ENV === "production") app.use(morgan("combined"));
 
 // Registering routes
 movieRouter(app);
+
+app.use(errorHandler);
 
 export default app;

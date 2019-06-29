@@ -1,21 +1,27 @@
 import { Movie, MovieList, MovieActiveRecord } from "../model/Movie";
 import { ListOptions } from "../model/ListOptions";
 import { MessageGatewayFactory } from "../messagegateway/MessageGatewayFactory";
+import { LoggerFactory } from "../logger/LoggerFactory";
 
 export async function read(movieId: string): Promise<Movie> {
 
+    const logger = LoggerFactory.instance();
+
     try {
 
-        // plogger.startTimer("search");
-    
-        return await MovieActiveRecord.read(movieId);
+        logger.debug("movie.read", movieId);
 
-        // plogger.logTime("search", req.get("correlationId"));
+        logger.startTimer("movie.read");
+
+        const result = await MovieActiveRecord.read(movieId);
+
+        logger.logTime("movie.read");
+
+        return result;
         
     } catch (err) {
                 
-        // log error
-        
+        logger.error("Error reading movie", err);        
         throw err;
 
     }    
@@ -24,18 +30,23 @@ export async function read(movieId: string): Promise<Movie> {
 
 export async function list(pageIndex = 0, pageSize = 10): Promise<MovieList> {
 
+    const logger = LoggerFactory.instance();
+
     try {
 
-        // plogger.startTimer("search");
+        logger.debug("movie.list", {pageIndex, pageSize});
 
-        return await MovieActiveRecord.list(new ListOptions(pageIndex, pageSize));
+        logger.startTimer("movie.list");
 
-        // plogger.logTime("search", req.get("correlationId"));
+        const result = await MovieActiveRecord.list(new ListOptions(pageIndex, pageSize));
+
+        logger.logTime("movie.list");
+
+        return result;
 
     } catch (err) {
         
-        // log error
-        
+        logger.error("Error listing movies", err);        
         throw err;
 
     }
@@ -44,23 +55,26 @@ export async function list(pageIndex = 0, pageSize = 10): Promise<MovieList> {
 
 export async function _delete(movieId: string): Promise<Movie> {
 
+    const logger = LoggerFactory.instance();
+
     try {
 
-        // plogger.startTimer("search");
+        logger.debug("movie.delete", movieId);
+
+        logger.startTimer("movie.delete");
             
         const deletedMovie = await MovieActiveRecord.delete(movieId);
 
         const messageGateway = MessageGatewayFactory.instance();
         messageGateway.notifyMovieDeleted(deletedMovie);
 
-        return deletedMovie;
+        logger.logTime("movie.delete");
 
-        // plogger.logTime("search", req.get("correlationId"));
+        return deletedMovie;
 
     } catch (err) {
         
-        // log error
-        
+        logger.error("Error deleting movie", err);        
         throw err;
 
     }
@@ -69,9 +83,13 @@ export async function _delete(movieId: string): Promise<Movie> {
 
 export async function update(movieId: string, movieData: Movie): Promise<Movie> {
 
+    const logger = LoggerFactory.instance();
+
     try {
 
-        // plogger.startTimer("search");
+        logger.debug("movie.update", {movieId, movieData});
+
+        logger.startTimer("movie.update");
             
         const movie: MovieActiveRecord = await MovieActiveRecord.read(movieId);
         if (!movie) return;
@@ -81,14 +99,13 @@ export async function update(movieId: string, movieData: Movie): Promise<Movie> 
         const messageGateway = MessageGatewayFactory.instance();
         messageGateway.notifyMovieUpdated(updatedMovie);
 
-        return updatedMovie;
+        logger.logTime("movie.update");
 
-        // plogger.logTime("search", req.get("correlationId"));
+        return updatedMovie;
 
     } catch (err) {
 
-        // log error
-
+        logger.error("Error updating movie", err);        
         throw err;
 
     }
@@ -97,9 +114,13 @@ export async function update(movieId: string, movieData: Movie): Promise<Movie> 
 
 export async function create(movieData: Movie): Promise<Movie> {
 
+    const logger = LoggerFactory.instance();
+
     try {
 
-        // plogger.startTimer("search");
+        logger.debug("movie.create", movieData);
+
+        logger.startTimer("movie.create");
 
         const movie: MovieActiveRecord = Object.assign(new MovieActiveRecord(), movieData);
         const createdMovie = await movie.create();
@@ -107,14 +128,13 @@ export async function create(movieData: Movie): Promise<Movie> {
         const messageGateway = MessageGatewayFactory.instance();
         messageGateway.notifyMovieCreated(createdMovie);
 
-        return createdMovie;
+        logger.logTime("movie.create");
 
-        // plogger.logTime("search", req.get("correlationId"));
+        return createdMovie;
 
     } catch (err) {
 
-        // log error
-
+        logger.error("Error creating movie", err);        
         throw err;
 
     }
@@ -123,18 +143,23 @@ export async function create(movieData: Movie): Promise<Movie> {
 
 export async function findOneByTitle(movieTitle: string): Promise<Movie> {
 
+    const logger = LoggerFactory.instance();
+
     try {
 
-        // plogger.startTimer("search");
-            
-        return await MovieActiveRecord.findOneByTitle(movieTitle);
+        logger.debug("movie.findOneByTitle", movieTitle);
 
-        // plogger.logTime("search", req.get("correlationId"));
+        logger.startTimer("movie.findOneByTitle");
+            
+        const result = await MovieActiveRecord.findOneByTitle(movieTitle);
+
+        logger.logTime("movie.findOneByTitle");
+
+        return result;
 
     } catch (err) {
         
-        // log error
-
+        logger.error("Error finding movie by title", err);
         throw err;
 
     }
@@ -143,18 +168,23 @@ export async function findOneByTitle(movieTitle: string): Promise<Movie> {
 
 export async function findAllByActorName(actorName: string, pageIndex = 0, pageSize = 10): Promise<MovieList> {
 
+    const logger = LoggerFactory.instance();
+
     try {
 
-        // plogger.startTimer("search");
-            
-        return await MovieActiveRecord.findAllByActorName(actorName, new ListOptions(pageIndex, pageSize));
+        logger.debug("movie.findAllByActorName", {actorName, pageIndex, pageSize});
 
-        // plogger.logTime("search", req.get("correlationId"));
+        logger.startTimer("movie.findAllByActorName");
+            
+        const result = await MovieActiveRecord.findAllByActorName(actorName, new ListOptions(pageIndex, pageSize));
+
+        logger.logTime("movie.findAllByActorName");
+
+        return result;
 
     } catch (err) {
         
-        // log error
-
+        logger.error("Error listing movies by actor name", err);
         throw err;
 
     }
