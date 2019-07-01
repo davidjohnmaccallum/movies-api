@@ -1,3 +1,7 @@
+/**
+ * This is the brains of the operation. It follows a Transaction Script
+ * pattern. Business logic goes here.
+ */
 import { Movie, MovieList, MovieActiveRecord } from "../model/Movie";
 import { ListOptions } from "../model/ListOptions";
 import { MessageGatewayFactory } from "../messagegateway/MessageGatewayFactory";

@@ -1,6 +1,12 @@
 import { Express, Request, Response, NextFunction } from "express";
 import * as movieController from "../controller/movieController";
 
+/**
+ * This module handles the HTTP transport layer of the API. It maps
+ * URL paths to controller functions.
+ * 
+ * @param app An Express app instance.
+ */
 export default function(app: Express) {
     
     app.route("/movies").get(async function(req: Request, res: Response, next: NextFunction) {

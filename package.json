@@ -1,7 +1,7 @@
 {
   "name": "movies-api",
-  "version": "1.0.0",
-  "description": "* Emit change events * Strong types * Client library * Error logging * Postman project",
+  "version": "1.0.1",
+  "description": "I have been asked to do a little full stack code assignment. The task is to create a program with basic CRUD functionality for maintaining a list of movies. This is the backend API. It is written using NodeJS, TypeScript and Express.",
   "main": "dist/server.js",
   "scripts": {
     "start": "node ./dist/server.js",
@@ -36,7 +36,7 @@
     "@types/chai-as-promised": "^7.1.0",
     "@types/cors": "^2.8.4",
     "@types/express": "^4.16.1",
-    "@types/mocha": "^5.2.6",
+    "@types/mocha": "^5.2.7",
     "@types/morgan": "^1.7.35",
     "@types/node": "^11.11.7",
     "@types/uuid": "^3.4.4",
@@ -62,6 +62,6 @@
     "reporter": [
       "html"
     ],
-    "all": true  
+    "all": true
   }
 }

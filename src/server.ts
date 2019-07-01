@@ -1,22 +1,15 @@
-// import errorHandler from "errorhandler";
-
 import app from "./app";
 import Env from "./env";
-
-/**
- * Error Handler. Provides full stack - remove for production
- */
-// app.use(errorHandler());
 
 /**
  * Start Express server.
  */
 const server = app.listen(3000, () => {
   console.log(
-    "\tApp is running at http://localhost:3000 in %s mode",
-    Env.NODE_ENV
+    "App is running at http://localhost:3000/movies in %s mode. API documentation here %s",
+    Env.NODE_ENV,
+    "https://documenter.getpostman.com/view/7984062/S1a7UQdT?version=latest"
   );
-  console.log("\tPress CTRL-C to stop\n");
 });
 
 export default server;

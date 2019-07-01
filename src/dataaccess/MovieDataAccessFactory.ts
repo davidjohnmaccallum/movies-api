@@ -6,6 +6,9 @@ export class MovieDataAccessFactory {
     
     static _instance: IMovieDataAccess = new MovieDataAccess();
 
+    /**
+     * Used to switch to an in memory mock database for unit testing.
+     */
     static enableTestMode() {
         this._instance = new MovieDataAccessMock();
     }

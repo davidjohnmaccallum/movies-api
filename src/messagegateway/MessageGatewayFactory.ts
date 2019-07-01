@@ -6,6 +6,9 @@ export class MessageGatewayFactory {
     
     static _instance: IMessageGateway = new MessageGateway();
 
+    /**
+     * Used to switch to a mock message gateway for unit testing.
+     */
     static enableTestMode() {
         this._instance = new MessageGatewayMock();
     }

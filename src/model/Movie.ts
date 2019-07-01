@@ -1,6 +1,9 @@
 import { ListOptions } from "./ListOptions";
 import { MovieDataAccessFactory } from "../dataaccess/MovieDataAccessFactory";
 
+/**
+ * A movie stored on a VHS tape. This could be a feature film, documentary, series, or anything really that can be recorded onto a VHS tape.
+ */
 export class Movie {
 
     _id?: string;
@@ -17,6 +20,11 @@ export class Movie {
 
 }
 
+/**
+ * Extends the Movie class with methods to read and write
+ * movies to/from the data store. This class follows the 
+ * Active Record pattern.
+ */
 export class MovieActiveRecord extends Movie {
 
     static async read(id: string): Promise<MovieActiveRecord> {
@@ -56,6 +64,11 @@ export class MovieActiveRecord extends Movie {
 
 }
 
+/**
+ * Returned by API functions that return a
+ * list of Movies. It includes fields to control
+ * pagination.
+ */
 export class MovieList {
 
     data: Movie[];
