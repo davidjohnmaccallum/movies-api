@@ -6,8 +6,16 @@ Though this program is simple I want to try to make it production quality. I wan
 
 ## Getting Started
 
-```bash
+I am using node 8.9.
 
+```bash
+git clone git@github.com:davidjohnmaccallum/movies-api.git
+cd movies-api/
+npm install
+npm run build
+npm run test
+npm run testcoverage # Test coverage report created in /coverage
+npm start
 ```
 
 ## Design Decisions
