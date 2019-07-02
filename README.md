@@ -60,6 +60,8 @@ I include a [correlation ID](https://hilton.org.uk/blog/microservices-correlatio
 
 APIs can be a performance bottleneck so I have performance logging on each of the controller functions. Kibana allows me to graph these very nicely.
 
+In a real world situation, to get consistent logging across all microservices, I would create the logger as a reusable NPM module and host it on our company NPM repository.
+
 ### API User Documentation
 
 For users of the API I have used the really handy feature of Postman to create [online API docs here](https://documenter.getpostman.com/view/7984062/S1a7UQdT?version=latest).
